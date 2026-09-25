@@ -1,0 +1,925 @@
+@source "./**/*.vue";
+/* Utility classes written in the markdown (`ui:` overrides, `{.class}`) */
+@source "../content/**/*.md";
+
+/* Spotify green, used for the primary call to action and the feature icons.
+   The rest of the UI keeps the theme's primary colour. */
+:root {
+  --queueify-green: #1db954;
+  --queueify-green-hover: #1ed760;
+  --queueify-wordmark-end: #18181b;
+}
+
+.dark {
+  --queueify-wordmark-end: #ffffff;
+}
+
+/* The hero headline: green fading into the page's text colour, white in dark
+   mode and near-black in light mode so it stays legible. As an inline-block the
+   gradient spans the whole wrapped headline instead of restarting per line, and
+   the bottom padding keeps the descender of the "y" inside the painted box. */
+.qf-headline {
+  display: inline-block;
+  padding-bottom: 0.1em;
+  margin-bottom: -0.1em;
+  background-image: linear-gradient(
+    100deg,
+    var(--queueify-green) 0%,
+    var(--queueify-green-hover) 30%,
+    var(--queueify-wordmark-end) 95%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* The one button that has to read as "Spotify". Unlayered, so it wins over the
+   Tailwind utilities Nuxt UI puts on the button. */
+.btn-spotify {
+  background-color: var(--queueify-green);
+  color: #06140b;
+}
+
+.btn-spotify:hover {
+  background-color: var(--queueify-green-hover);
+  color: #06140b;
+}
+
+.btn-spotify:focus-visible {
+  outline: 2px solid var(--queueify-green);
+  outline-offset: 2px;
+}
+
+/* The hero's "Get started": the one thing on the page to click, so it is
+   bigger and heavier than the buttons around it and sits in a green glow
+   that brightens and lifts under the pointer. */
+/* Semibold at 17px on Spotify's own button green: heavier dark text on the
+   darker green renders with colour fringes on Windows */
+.qf-cta-primary {
+  padding: 0.875rem 1.5rem;
+  border-radius: 0.625rem;
+  background-color: #1ed760;
+  color: #000;
+  font-size: 1.0625rem;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  box-shadow:
+    inset 0 1px 0 color-mix(in oklab, white 35%, transparent),
+    0 0 0 1px color-mix(in oklab, var(--queueify-green) 60%, transparent),
+    0 10px 30px -8px color-mix(in oklab, var(--queueify-green) 70%, transparent);
+  transition:
+    background-color 150ms ease,
+    box-shadow 200ms ease,
+    transform 200ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.qf-cta-primary:hover {
+  background-color: #3be477;
+  color: #000;
+  transform: translateY(-1px);
+  box-shadow:
+    inset 0 1px 0 color-mix(in oklab, white 35%, transparent),
+    0 0 0 1px var(--queueify-green-hover),
+    0 14px 40px -8px color-mix(in oklab, var(--queueify-green) 90%, transparent);
+}
+
+.qf-cta-primary:active {
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .qf-cta-primary,
+  .qf-cta-primary:hover {
+    transform: none;
+  }
+}
+
+/* Feature cards */
+.qf-tile {
+  display: flex;
+  width: 2.5rem;
+  height: 2.5rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.75rem;
+  background-color: color-mix(in oklab, var(--queueify-green) 14%, transparent);
+  color: var(--queueify-green);
+  box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--queueify-green) 28%, transparent);
+}
+
+/* A feature card's picture (FeatureArt), run edge to edge along the bottom of
+   the card the way Vite's are: a dark stage, faintly ruled, lit green from
+   below. Dark in both colour modes - it is a window onto the app, which is.
+   The negative margins undo the card's padding (p-6, sm:p-8), and the auto
+   top margin sinks it to the bottom so a row's pictures line up. */
+.qf-art {
+  position: relative;
+  display: block;
+  height: 13.5rem;
+  margin: auto -1.5rem -1.5rem;
+  padding: 0.75rem 0.5rem 0;
+  overflow: hidden;
+  border-top: 1px solid var(--ui-border);
+  background:
+    radial-gradient(90% 80% at 50% 115%, rgba(29, 185, 84, 0.2), transparent 70%),
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px) 0 0 / 100% 20px,
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px) 0 0 / 20px 100%,
+    #0a0a0d;
+}
+
+@media (min-width: 640px) {
+  .qf-art {
+    margin: auto -2rem -2rem;
+  }
+}
+
+.qf-chip {
+  width: fit-content;
+  border-radius: 0.375rem;
+  background-color: var(--ui-bg-elevated);
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--ui-text-muted);
+}
+
+/* The chip sits on the card background, so it needs to step up a shade when the
+   card lightens on hover or it disappears. */
+.group:hover .qf-chip {
+  background-color: var(--ui-bg-accented);
+}
+
+/* Circle with an arrow that grows into a "Read the docs" pill on hover. */
+.qf-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 9999px;
+  border: 1px solid var(--ui-border);
+  padding: 0.25rem;
+  transition:
+    padding 260ms cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 200ms ease,
+    background-color 200ms ease;
+}
+
+.qf-cta-label {
+  max-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  opacity: 0;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--queueify-green);
+  transition:
+    max-width 300ms cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 200ms ease;
+}
+
+.qf-cta-icon {
+  display: flex;
+  width: 1.75rem;
+  height: 1.75rem;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  border: 1px solid var(--ui-border);
+  color: var(--ui-text-muted);
+  transition:
+    border-color 200ms ease,
+    color 200ms ease,
+    background-color 200ms ease;
+}
+
+.group:hover .qf-cta {
+  padding-left: 0.875rem;
+  border-color: color-mix(in oklab, var(--queueify-green) 45%, transparent);
+  background-color: color-mix(in oklab, var(--queueify-green) 10%, transparent);
+}
+
+.group:hover .qf-cta-label {
+  max-width: 10rem;
+  opacity: 1;
+}
+
+.group:hover .qf-cta-icon {
+  border-color: color-mix(in oklab, var(--queueify-green) 55%, transparent);
+  color: var(--queueify-green);
+}
+
+/* Capability pills under the editor screenshot */
+.qf-pill {
+  border-radius: 9999px;
+  border: 1px solid var(--ui-border);
+  padding: 0.3rem 0.75rem;
+  font-size: 0.8125rem;
+  color: var(--ui-text-muted);
+  transition:
+    border-color 200ms ease,
+    color 200ms ease;
+}
+
+.qf-pill:hover {
+  border-color: color-mix(in oklab, var(--queueify-green) 50%, transparent);
+  color: var(--queueify-green);
+}
+
+/* Arrows nudge in the direction they point when their link is hovered. */
+.iconify.i-lucide\:arrow-right,
+.iconify.i-lucide\:arrow-left,
+.iconify.i-lucide\:chevron-right,
+.iconify.i-lucide\:chevron-left,
+.iconify.i-lucide\:arrow-up-right {
+  transition: transform 180ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+a:hover .iconify.i-lucide\:arrow-right,
+button:hover .iconify.i-lucide\:arrow-right,
+a:hover .iconify.i-lucide\:chevron-right,
+button:hover .iconify.i-lucide\:chevron-right {
+  transform: translateX(3px);
+}
+
+a:hover .iconify.i-lucide\:arrow-left,
+button:hover .iconify.i-lucide\:arrow-left,
+a:hover .iconify.i-lucide\:chevron-left,
+button:hover .iconify.i-lucide\:chevron-left {
+  transform: translateX(-3px);
+}
+
+a:hover .iconify.i-lucide\:arrow-up-right,
+button:hover .iconify.i-lucide\:arrow-up-right {
+  transform: translate(2px, -2px);
+}
+
+/* Light/dark switch, when the browser supports view transitions: the new colour
+   scheme is wiped in diagonally from the top left over the frozen old frame. */
+::view-transition-old(root) {
+  animation: none;
+  z-index: 0;
+}
+
+::view-transition-new(root) {
+  animation: queueify-diagonal-wipe 700ms cubic-bezier(0.65, 0, 0.35, 1);
+  z-index: 1;
+}
+
+@keyframes queueify-diagonal-wipe {
+  from {
+    clip-path: polygon(0 0, 0 0, -45% 100%, -45% 100%);
+  }
+  to {
+    clip-path: polygon(0 0, 145% 0, 100% 100%, 0 100%);
+  }
+}
+
+/* Fallback for browsers without the View Transition API: the old background is
+   held in a skewed overlay that slides off to the right, its green leading edge
+   uncovering the new colour scheme underneath. */
+.qf-wipe {
+  position: fixed;
+  top: 0;
+  left: -50vw;
+  width: 200vw;
+  height: 100vh;
+  z-index: 9999;
+  pointer-events: none;
+  border-left: 3px solid var(--queueify-green);
+  transform: skewX(-12deg);
+  will-change: transform;
+}
+
+/* Spotify green as the theme's primary colour, so links, the active sidebar item
+   and the table of contents all match the brand instead of the default pink. */
+@theme static {
+  --color-spotify-50: #e9fbf0;
+  --color-spotify-100: #c9f7dd;
+  --color-spotify-200: #96eebd;
+  --color-spotify-300: #5ee09a;
+  --color-spotify-400: #2ecf7c;
+  --color-spotify-500: #1db954;
+  --color-spotify-600: #17a049;
+  --color-spotify-700: #14803c;
+  --color-spotify-800: #136533;
+  --color-spotify-900: #11532c;
+  --color-spotify-950: #062e17;
+}
+
+/* Looping screen captures */
+.qf-video {
+  margin-inline: auto;
+  max-width: 64rem;
+}
+
+.qf-video-frame {
+  position: relative;
+  overflow: hidden;
+  border-radius: 0.75rem;
+  border: 1px solid var(--ui-border);
+  background-color: var(--ui-bg-elevated);
+}
+
+.qf-video-el {
+  display: block;
+  width: 100%;
+  height: auto;
+  cursor: pointer;
+}
+
+.qf-video-toggle {
+  position: absolute;
+  right: 0.75rem;
+  bottom: 0.75rem;
+  display: flex;
+  width: 2rem;
+  height: 2rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  border: 1px solid color-mix(in oklab, white 25%, transparent);
+  background-color: color-mix(in oklab, black 55%, transparent);
+  color: white;
+  opacity: 0;
+  transition: opacity 200ms ease;
+}
+
+.qf-video:hover .qf-video-toggle,
+.qf-video-toggle:focus-visible {
+  opacity: 1;
+}
+
+.qf-video-caption {
+  margin-top: 0.625rem;
+  text-align: center;
+  font-size: 0.8125rem;
+  color: var(--ui-text-muted);
+}
+
+/* The hero demo: a stream on top, its chat underneath, in the same window
+   language as the feature pictures - 1px hairlines, small type, real UI. The
+   stream stays dark in both colour modes because it stands in for video; the
+   chat follows the site. */
+.qd {
+  width: 100%;
+  max-width: 34rem;
+  margin-inline: auto;
+  overflow: hidden;
+  border-radius: 0.875rem;
+  border: 1px solid var(--ui-border-accented);
+  background-color: var(--ui-bg);
+  box-shadow:
+    0 1px 0 color-mix(in oklab, white 6%, transparent) inset,
+    0 24px 60px -24px rgba(0, 0, 0, 0.55),
+    0 0 0 6px color-mix(in oklab, var(--ui-bg-elevated) 45%, transparent);
+}
+
+/* ------------------------------------------------------------- stream */
+
+.qd-stage {
+  position: relative;
+  aspect-ratio: 16 / 7.4;
+  overflow: hidden;
+  background: linear-gradient(160deg, #2e2a78 0%, #171b40 55%, #0a0f1f 100%);
+}
+
+/* On a phone the stream would be too short to hold the widget with any game
+   showing round it */
+@media (max-width: 480px) {
+  .qd-stage {
+    aspect-ratio: 16 / 10;
+  }
+}
+
+.qd-scene {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.qd-live,
+.qd-viewers {
+  position: absolute;
+  top: 0.75rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  height: 1.25rem;
+  padding: 0 0.45rem;
+  border-radius: 0.3rem;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.qd-live {
+  left: 0.75rem;
+  background-color: #e91916;
+  color: #fff;
+  letter-spacing: 0.02em;
+}
+
+.qd-live-dot {
+  width: 0.35rem;
+  height: 0.35rem;
+  border-radius: 9999px;
+  background-color: #fff;
+}
+
+.qd-viewers {
+  left: 4.1rem;
+  background-color: rgba(0, 0, 0, 0.55);
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: 600;
+}
+
+/* The overlay, where a streamer would put it: bottom left */
+.qd-widget {
+  --qd-accent: var(--queueify-green);
+  position: absolute;
+  left: 0.875rem;
+  bottom: 0.875rem;
+  width: min(19rem, calc(100% - 1.75rem));
+  padding: 0.5rem;
+  border-radius: 0.875rem;
+  background-color: rgba(8, 8, 12, 0.82);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.09),
+    0 12px 30px -10px rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(6px);
+}
+
+.qd-widget-inner {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+/* A cover drawn from the track's colours: sky, sun and hills */
+.qd-art {
+  flex: none;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 0.5rem;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12);
+  background:
+    radial-gradient(circle at 64% 36%, color-mix(in oklab, white 78%, var(--c1)) 0 14%, transparent 15%),
+    radial-gradient(130% 60% at 25% 104%, var(--c3) 0 46%, transparent 47%),
+    radial-gradient(120% 50% at 90% 110%, color-mix(in oklab, black 25%, var(--c3)) 0 46%, transparent 47%),
+    linear-gradient(170deg, var(--c1), var(--c2) 58%, var(--c3));
+}
+
+.qd-meta {
+  min-width: 0;
+  flex: 1;
+  padding-right: 0.25rem;
+}
+
+.qd-title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 1.0625rem;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--qd-accent);
+}
+
+.qd-artist {
+  margin-top: 0.0625rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.62);
+}
+
+.qd-bar {
+  margin-top: 0.5rem;
+  height: 0.1875rem;
+  overflow: hidden;
+  border-radius: 9999px;
+  background-color: rgba(255, 255, 255, 0.14);
+}
+
+.qd-bar-fill {
+  height: 100%;
+  border-radius: inherit;
+  background-color: var(--qd-accent);
+  transition-property: width;
+  transition-timing-function: linear;
+}
+
+.qd-swap-enter-active,
+.qd-swap-leave-active {
+  transition: opacity 240ms ease, transform 240ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.qd-swap-enter-from {
+  opacity: 0;
+  transform: translateY(5px);
+}
+
+.qd-swap-leave-to {
+  opacity: 0;
+  transform: translateY(-5px);
+}
+
+/* --------------------------------------------------------------- chat */
+
+.qd-chat {
+  border-top: 1px solid var(--ui-border);
+}
+
+.qd-chat-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 2.5rem;
+  padding: 0 0.875rem;
+  border-bottom: 1px solid var(--ui-border);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--ui-text-highlighted);
+}
+
+.qd-chat-head .iconify {
+  color: var(--ui-text-dimmed);
+}
+
+.qd-chat-body {
+  display: flex;
+  height: 13.25rem;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 0.125rem;
+  overflow: hidden;
+  padding: 0.5rem 0.5rem 0.625rem;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+}
+
+.qd-msg {
+  flex: none;
+  border-radius: 0.375rem;
+  padding: 0.25rem 0.5rem;
+  color: var(--ui-text);
+  overflow-wrap: anywhere;
+}
+
+.qd-msg b {
+  font-weight: 700;
+}
+
+/* A channel point redemption, the way Twitch marks one */
+.qd-msg-reward {
+  padding: 0.375rem 0.5rem 0.375rem 0.625rem;
+  border-left: 3px solid #9146ff;
+  border-radius: 0 0.375rem 0.375rem 0;
+  background-color: color-mix(in oklab, #9146ff 9%, transparent);
+}
+
+.qd-reward {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  margin-bottom: 0.125rem;
+  font-size: 0.75rem;
+  color: var(--ui-text-muted);
+}
+
+.qd-reward b {
+  font-weight: 600;
+  color: var(--ui-text);
+}
+
+.qd-cost {
+  margin-left: auto;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--ui-text-muted);
+}
+
+/* The channel points coin: a ring with a notch, drawn rather than an icon */
+.qd-points-icon {
+  flex: none;
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 9999px;
+  border: 2px solid #a970ff;
+  border-top-color: transparent;
+  transform: rotate(-45deg);
+}
+
+.qd-badge {
+  display: inline-flex;
+  width: 1rem;
+  height: 1rem;
+  margin-right: 0.3rem;
+  vertical-align: -0.2rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.2rem;
+  background-color: #e91916;
+  color: #fff;
+}
+
+.qd-text {
+  color: var(--ui-text-toned);
+}
+
+.qd-input {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 0.75rem 0.75rem;
+}
+
+.qd-input-box {
+  flex: 1;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  padding: 0 0.625rem;
+  border-radius: 0.375rem;
+  border: 1px solid var(--ui-border-accented);
+  font-size: 0.75rem;
+  color: var(--ui-text-dimmed);
+}
+
+.qd-points {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--ui-text-muted);
+}
+
+.qd-send {
+  display: inline-flex;
+  align-items: center;
+  height: 2rem;
+  padding: 0 0.75rem;
+  border-radius: 0.375rem;
+  background-color: #9146ff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.qd-msg-enter-active {
+  transition: opacity 260ms ease, transform 260ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.qd-msg-enter-from {
+  opacity: 0;
+  transform: translateY(8px);
+}
+
+.qd-msg-move {
+  transition: transform 260ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.qd-msg-leave-active {
+  display: none;
+}
+
+/* The landing page frame. Every section is a band: a rule across the page on
+   top, and its content column ruled down both sides. Stacked, the side rules
+   join into two rails that run the length of the page, and everything inside
+   lines up against them instead of floating in the middle of the screen.
+   Unlayered, so these win over the section's own Tailwind utilities. */
+.qf-band {
+  border-top: 1px solid var(--ui-border);
+}
+
+/* Docus sets the container to 90rem, which on most laptops puts the rails on
+   the edges of the screen where they cannot be seen. The landing page narrows
+   it, header included so the logo lines up with the left rail; the docs keep
+   the full width for the sidebar and table of contents. */
+:root:has(.qf-hero) {
+  --ui-container: 72rem;
+}
+
+.qf-band-end {
+  border-bottom: 1px solid var(--ui-border);
+}
+
+.qf-hero > [data-slot="container"],
+.qf-band > [data-slot="container"] {
+  position: relative;
+  border-inline: 1px solid var(--ui-border);
+}
+
+.qf-band > [data-slot="container"] {
+  gap: 2.5rem;
+  padding-block: 3.5rem;
+}
+
+@media (min-width: 640px) {
+  .qf-band > [data-slot="container"] {
+    gap: 3rem;
+    padding-block: 4.5rem;
+  }
+}
+
+/* A band whose last piece of content runs rail to rail sits it on the band's
+   bottom edge, so the two share a line */
+.qf-band-flush > [data-slot="container"] {
+  padding-bottom: 0;
+}
+
+/* A band that is nothing but rail-to-rail content */
+.qf-band-bare > [data-slot="container"] {
+  padding-block: 0;
+}
+
+.qf-band [data-slot="header"] > [data-slot="title"],
+.qf-band [data-slot="header"] > [data-slot="description"] {
+  text-align: left;
+}
+
+.qf-band [data-slot="header"] > [data-slot="description"] {
+  max-width: 42rem;
+  text-wrap: pretty;
+}
+
+.qf-band [data-slot="links"] {
+  justify-content: flex-start;
+}
+
+/* Content that runs out to the rails: the negative margin undoes the
+   container's side padding at each breakpoint */
+.qf-bleed {
+  margin-inline: -1rem;
+}
+
+@media (min-width: 640px) {
+  .qf-bleed {
+    margin-inline: -1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .qf-bleed {
+    margin-inline: -2rem;
+  }
+}
+
+.qf-band .qf-video {
+  max-width: none;
+}
+
+.qf-bleed .qf-video-frame {
+  border-width: 1px 0 0;
+  border-radius: 0;
+}
+
+/* Dot grid behind the hero demo, fading out before it reaches the headline */
+.qf-hero > [data-slot="container"]::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image: radial-gradient(
+    circle at 1px 1px,
+    color-mix(in oklab, var(--ui-text-muted) 30%, transparent) 1px,
+    transparent 0
+  );
+  background-size: 24px 24px;
+  mask-image: linear-gradient(to right, transparent 35%, black 80%);
+}
+
+@media (max-width: 1023px) {
+  .qf-hero > [data-slot="container"]::before {
+    mask-image: linear-gradient(to bottom, transparent 40%, black 75%);
+  }
+}
+
+/* Built-in theme rows: the theme sits on a stage a step off the page colour
+   so its edges read. Not --ui-bg-muted, which in dark mode is the border
+   colour and would swallow the rules between the rows. */
+.qf-theme-stage {
+  background-color: color-mix(in oklab, var(--ui-bg-elevated) 45%, var(--ui-bg));
+}
+
+/* The closing band, split in two */
+/* min-width: 0 lets the install block scroll inside its cell on a phone
+   instead of pushing the whole page sideways with its one long line */
+.qf-split-cell {
+  min-width: 0;
+  background-color: var(--ui-bg);
+  padding: 3rem 1rem;
+}
+
+@media (min-width: 640px) {
+  .qf-split-cell {
+    padding: 4rem 2rem;
+  }
+}
+
+.qf-split-title {
+  font-size: 1.875rem;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+  color: var(--ui-text-highlighted);
+}
+
+.qf-split-description {
+  max-width: 34rem;
+  margin-top: 0.75rem;
+  line-height: 1.65;
+  color: var(--ui-text-muted);
+  text-wrap: pretty;
+}
+
+.qf-split-body {
+  display: flex;
+  margin-top: 2rem;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.25rem;
+}
+
+.qf-split-body > * {
+  margin: 0;
+}
+
+.qf-split-body > div:not(.qf-split-links),
+.qf-split-body > pre {
+  width: 100%;
+}
+
+.qf-split-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+/* The docs' animations: the same dark stage the feature pictures sit on,
+   with the same windows, type and clock. Each one is a <figure class="dg">
+   whose parts only name their keyframes; the loop length (--loop), the
+   easing and the pause while off screen are all set here, once. */
+.dg {
+  margin: 1.75rem 0;
+}
+
+.dg-stage {
+  position: relative;
+  overflow: hidden;
+  border-radius: 0.875rem;
+  border: 1px solid var(--ui-border);
+  background:
+    radial-gradient(90% 80% at 50% 118%, rgba(29, 185, 84, 0.16), transparent 70%),
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px) 0 0 / 100% 20px,
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px) 0 0 / 20px 100%,
+    #0a0a0d;
+}
+
+.dg svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  font-family: inherit;
+}
+
+.dg figcaption {
+  margin-top: 0.625rem;
+  text-align: center;
+  font-size: 0.8125rem;
+  color: var(--ui-text-muted);
+}
+
+.dg .da {
+  animation-duration: var(--loop);
+  animation-iteration-count: infinite;
+  animation-fill-mode: both;
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transform-box: fill-box;
+}
+
+.dg:not(.is-playing) .da {
+  animation-play-state: paused;
+}
+
+/* Windows and type, dark in both colour modes like the app itself */
+.dg-panel { fill: #111116; stroke: rgba(255, 255, 255, 0.08); }
+.dg-term { fill: #0b0b0e; stroke: rgba(255, 255, 255, 0.08); }
+.dg-card { fill: #18181f; stroke: rgba(255, 255, 255, 0.06); }
+.dg-widget { fill: #0a0a0e; stroke: rgba(255, 255, 255, 0.1); }
+.dg-rule { stroke: rgba(255, 255, 255, 0.07); }
+.dg-head { fill: #fafafa; font-size: 11px; font-weight: 600; }
+.dg-text { fill: #d4d4d8; font-size: 11px; }
+.dg-muted { fill: #a1a1aa; }
+.dg-dim { fill: #71717a; }
+.dg-tiny { fill: #71717a; font-size: 9px; }
+.dg-mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+.dg-title { font-size: 14px; font-weight: 700; letter-spacing: -0.01em; }
+.dg-artist { fill: #fff; fill-opacity: 0.6; font-size: 10px; font-weight: 500; }
+.dg-dot { fill: #3f3f46; }

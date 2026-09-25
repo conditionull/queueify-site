@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 104 32" width="104" height="32" role="img" aria-label="queueify">
+  <defs>
+    <linearGradient id="queueify-wordmark" x1="0" y1="0" x2="1" y2="0.35">
+      <stop offset="0" stop-color="#1db954"/>
+      <stop offset="0.34" stop-color="#1ed760"/>
+      <stop offset="1" stop-color="#ffffff"/>
+    </linearGradient>
+  </defs>
+  <text x="0" y="23.5" font-family="ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,sans-serif" font-size="22" font-weight="700" letter-spacing="-0.8" fill="url(#queueify-wordmark)">queueify</text>
+</svg>
