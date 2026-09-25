@@ -160,7 +160,7 @@ class: qf-band qf-band-bare qf-band-end
   :::split-band
   ---
   left-title: Free and open source
-  left-description: MIT licensed, with no paid tier and nothing gated. If it saved you some hassle you can buy me a coffee.
+  left-description: MIT licensed, with no paid tier and nothing gated. If it saved you some hassle you can buy me a coffee <3
   right-title: Start taking requests
   right-description: You need Node 20 or newer, OBS, and Spotify Premium. Run these four lines and the dashboard walks you through the rest.
   ---

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const stats = [
-  { value: '4', label: 'starting layouts', hint: 'Classic, Spotlight, Spiffy, and Stacked' },
+  { value: '3', label: 'starting layouts', hint: 'Classic, Spiffy, and Stacked' },
   { value: '50', label: 'fonts', hint: 'plus UPPERCASE and italic' },
   { value: '2,000+', label: 'Lucide icons', hint: 'colour, weight, rotation, and opacity' },
   { value: '0', label: 'restarts', hint: 'saved themes load straight away' },
