@@ -790,7 +790,7 @@ button:hover .iconify.i-lucide\:arrow-up-right {
 
 .qf-split-title {
   font-size: 1.875rem;
-  font-weight: 700;
+  font-weight: 600;
   line-height: 1.2;
   letter-spacing: -0.025em;
   color: var(--ui-text-highlighted);

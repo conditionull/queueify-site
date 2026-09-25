@@ -5,6 +5,18 @@ export default defineAppConfig({
       primary: 'spotify',
       neutral: 'zinc',
     },
+    // Headings one step lighter than Nuxt UI's bold: at display sizes the
+    // bold reads heavy and clotted, semibold stays crisp
+    pageHero: { slots: { title: 'font-semibold' } },
+    pageSection: { slots: { title: 'font-semibold' } },
+    pageHeader: { slots: { title: 'font-semibold' } },
+    pageCta: { slots: { title: 'font-semibold' } },
+    prose: {
+      h1: { slots: { base: 'font-semibold' } },
+      h2: { slots: { base: 'font-semibold' } },
+      h3: { slots: { base: 'font-semibold' } },
+      h4: { slots: { base: 'font-semibold' } },
+    },
   },
 
   seo: {

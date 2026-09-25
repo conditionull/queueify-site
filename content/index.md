@@ -12,7 +12,7 @@ class: qf-hero
 orientation: horizontal
 ui:
   container: py-16 sm:py-24 lg:py-28
-  title: text-5xl sm:text-6xl lg:text-[3.5rem] font-bold tracking-tight text-balance
+  title: text-5xl sm:text-6xl lg:text-[3.5rem] font-semibold tracking-tight text-balance
 ---
   :::queue-hero
   :::

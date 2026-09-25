@@ -3,7 +3,7 @@
 // that switches to it on the left, the theme itself on the right.
 const themes = [
   { name: 'swag', src: '/img/theme-swag.png', width: 680, height: 165 },
-  { name: 'default', src: '/img/theme-default.png', width: 680, height: 192 },
+  { name: 'default', src: '/img/theme-default.png', width: 680, height: 160 },
   { name: 'minimal', src: '/img/theme-minimal.png', width: 400, height: 36 },
 ]
 </script>
