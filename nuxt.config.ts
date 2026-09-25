@@ -7,6 +7,12 @@ export default defineNuxtConfig({
     name: 'Queueify',
   },
 
+  docus: {
+    assistant: {
+      enabled: false,
+    },
+  },
+
   // The Queueify bot's Express server already listens on 3000 and 3001.
   devServer: {
     port: 3100,

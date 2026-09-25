@@ -74,8 +74,8 @@ export default defineAppConfig({
     branch: 'main',
   },
 
-  // The AI assistant needs a paid API key (Vercel AI Gateway or similar), so the
-  // floating input and "Explain with AI" stay off.
+  // The AI assistant is switched off in nuxt.config.ts; these keep its floating
+  // input and "Explain with AI" off too, should it ever be turned back on.
   assistant: {
     floatingInput: false,
     explainWithAi: false,
