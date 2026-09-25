@@ -33,6 +33,28 @@
   color: transparent;
 }
 
+/* The header's wordmark (AppHeaderLogo), drawn as text so it stays sharp on
+   every screen: the same green-to-page-colour gradient as the hero headline,
+   at the weight and tracking the SVG logo used */
+.qf-wordmark {
+  display: inline-block;
+  padding-bottom: 0.12em;
+  margin-bottom: -0.12em;
+  font-size: 1.375rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  background-image: linear-gradient(
+    100deg,
+    var(--queueify-green) 0%,
+    var(--queueify-green-hover) 34%,
+    var(--queueify-wordmark-end) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
 /* The one button that has to read as "Spotify". Unlayered, so it wins over the
    Tailwind utilities Nuxt UI puts on the button. */
 .btn-spotify {

@@ -5,6 +5,11 @@ export default defineAppConfig({
       primary: 'spotify',
       neutral: 'zinc',
     },
+    // The sticky header solid, with no backdrop blur. After the light/dark
+    // wipe, Chrome on some GPUs dropped the blurred header's whole backdrop
+    // layer and the page showed straight through it; without backdrop-filter
+    // there is no such layer to lose.
+    header: { slots: { root: 'bg-default backdrop-blur-none' } },
     // Headings one step lighter than Nuxt UI's bold: at display sizes the
     // bold reads heavy and clotted, semibold stays crisp
     pageHero: { slots: { title: 'font-semibold' } },
@@ -35,8 +40,9 @@ export default defineAppConfig({
 
   header: {
     title: 'queueify',
-    // There is no separate mark: the wordmark is the logo. `light` and `dark`
-    // have to be set or Docus falls back to rendering the title as plain text.
+    // There is no separate mark: the wordmark is the logo. The header draws it
+    // as text (components/app/AppHeaderLogo.vue) so it stays sharp on phones;
+    // these SVGs are what the logo's right-click menu copies and downloads.
     logo: {
       light: '/img/wordmark-light.svg',
       dark: '/img/wordmark-dark.svg',
