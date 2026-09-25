@@ -1,6 +1,6 @@
 <script setup lang="ts">
 // The picture along the bottom of each feature card: a small, true-to-life
-// piece of Queueify doing the thing the card describes - real chat replies,
+// piece of queueify doing the thing the card describes - real chat replies,
 // real log lines, the editor and OBS as they look.
 //
 // Every moving part in a picture shares one clock: its keyframes span the

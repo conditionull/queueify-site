@@ -1,6 +1,6 @@
 <script setup lang="ts">
 // Installing, start to finish: the four commands typed into a terminal, then
-// the two addresses Queueify prints when it starts, each going where it is
+// the two addresses queueify prints when it starts, each going where it is
 // for - the widget's into an OBS browser source, the dashboard's into a
 // browser, where the two required steps tick off.
 
@@ -31,7 +31,7 @@ const { playing } = useSvgPlayback(root)
       <svg
         viewBox="0 0 480 348"
         role="img"
-        aria-label="A terminal: git clone, cd queueify, npm install and npm start are typed in turn. Queueify prints the widget's address, http://localhost:3001, and the dashboard's, http://127.0.0.1:3002, and the dashboard opens in a browser with the Twitch and Spotify steps being ticked off."
+        aria-label="A terminal: git clone, cd queueify, npm install and npm start are typed in turn. queueify prints the widget's address, http://localhost:3001, and the dashboard's, http://127.0.0.1:3002, and the dashboard opens in a browser with the Twitch and Spotify steps being ticked off."
       >
         <defs>
           <filter :id="`${uid}-shadow`" x="-20%" y="-20%" width="140%" height="150%">

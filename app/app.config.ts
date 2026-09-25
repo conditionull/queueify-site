@@ -8,7 +8,7 @@ export default defineAppConfig({
   },
 
   seo: {
-    title: 'Queueify',
+    title: 'queueify',
     description: 'A Twitch bot that queues Spotify tracks, with an OBS overlay widget, a setup dashboard and a visual theme editor.',
     schema: {
       type: 'SoftwareApplication',
@@ -22,7 +22,7 @@ export default defineAppConfig({
   },
 
   header: {
-    title: 'Queueify',
+    title: 'queueify',
     // There is no separate mark: the wordmark is the logo. `light` and `dark`
     // have to be set or Docus falls back to rendering the title as plain text.
     logo: {
@@ -50,7 +50,7 @@ export default defineAppConfig({
       title: 'Elsewhere',
       links: [{
         icon: 'i-simple-icons-github',
-        label: 'Queueify on GitHub',
+        label: 'queueify on GitHub',
         to: 'https://github.com/conditionull/queueify',
         target: '_blank',
       }, {

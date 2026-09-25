@@ -4,7 +4,7 @@ export default defineNuxtConfig({
   site: {
     // The deployed URL comes from NUXT_SITE_URL (set it in Vercel), so canonical
     // links and OG images are absolute. Locally it falls back to localhost.
-    name: 'Queueify',
+    name: 'queueify',
   },
 
   docus: {
@@ -13,7 +13,7 @@ export default defineNuxtConfig({
     },
   },
 
-  // The Queueify bot's Express server already listens on 3000 and 3001.
+  // The queueify bot's Express server already listens on 3000 and 3001.
   devServer: {
     port: 3100,
   },

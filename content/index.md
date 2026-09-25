@@ -1,7 +1,7 @@
 ---
 seo:
   title: A Twitch bot that queues Spotify tracks
-  description: Queueify lets your viewers request Spotify songs from Twitch chat or channel
+  description: queueify lets your viewers request Spotify songs from Twitch chat or channel
     points, shows what is playing in an OBS overlay you design yourself, and runs entirely
     on your own machine.
 ---
@@ -27,10 +27,14 @@ shows what is playing. Free, MIT licensed, and it runs on your own machine.
 #links
   :::u-button
   ---
-  class: btn-spotify qf-cta-primary
+  class: qf-cta-primary
+  color: neutral
   size: xl
   to: /getting-started/installation
-  trailing-icon: i-lucide-arrow-right
+  trailing-icon: i-lucide-chevron-right
+  ui:
+    trailingIcon: size-5
+  variant: outline
   ---
   Get started
   :::
@@ -65,12 +69,12 @@ description: The widget over gameplay, running a theme someone built in the edit
 class: qf-band
 orientation: horizontal
 title: How a request reaches the screen
-description: Everything between the chat message and the overlay runs on your computer. Queueify only talks to Twitch and Spotify.
+description: Everything between the chat message and the overlay runs on your computer. queueify only talks to Twitch and Spotify.
 features:
   - title: A viewer asks
     description: They type !q with a Spotify link, or redeem the channel point reward.
     icon: i-lucide-message-square
-  - title: Queueify checks it
+  - title: queueify checks it
     description: Cooldown, length, repeats, the deny list and the explicit filter, then a reply in chat either way.
     icon: i-lucide-list-checks
   - title: It plays, and the overlay shows it
@@ -85,7 +89,7 @@ features:
 ---
 class: qf-band qf-band-flush
 title: From chat to overlay
-description: What Queueify handles once it is running.
+description: What queueify handles once it is running.
 ---
   :::feature-grid
     ::::feature-card{icon="i-lucide-list-music" label="Requests" art="requests" title="Chat and channel points" to="/commands/chat-commands"}
@@ -143,7 +147,7 @@ links:
 ---
 class: qf-band qf-band-flush
 title: Built-in themes
-description: Three themes ship with Queueify and are read-only, so there is always a working fallback. Duplicate one in the editor to make your own.
+description: Three themes ship with queueify and are read-only, so there is always a working fallback. Duplicate one in the editor to make your own.
 ---
 ::theme-rows
 ::

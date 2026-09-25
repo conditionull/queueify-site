@@ -1,12 +1,12 @@
 <script setup lang="ts">
 // The landing page hero: Twitch chat on the bottom, the widget above it, and a
-// short script of requests playing through both. The replies are Queueify's
+// short script of requests playing through both. The replies are queueify's
 // default chat messages (config/messages.json), minus the emotes.
 
 interface Track {
   title: string
   artist: string
-  // Stands in for the colour Queueify samples from the album art
+  // Stands in for the colour queueify samples from the album art
   accent: string
   // The cover, drawn as sky, sun and hills: light, mid and dark
   cover: [string, string, string]
@@ -242,7 +242,7 @@ onMounted(() => {
     ref="root"
     class="qd"
     role="img"
-    aria-label="An example stream: viewers request songs in Twitch chat with !q and a channel point reward, Queueify replies in chat, and the overlay on the stream shows the song playing."
+    aria-label="An example stream: viewers request songs in Twitch chat with !q and a channel point reward, queueify replies in chat, and the overlay on the stream shows the song playing."
   >
     <div class="qd-stage" aria-hidden="true">
       <!-- The game behind the overlay -->

@@ -2,7 +2,7 @@
 // A theme per OBS scene: the scene list on the left, the preview on the
 // right. OBS cuts from Gaming to Just Chatting and the widget changes theme
 // with it - a slim strip over the game, the big panel over the webcam - while
-// the song carries on. Underneath, the line Queueify logs when it switches.
+// the song carries on. Underneath, the line queueify logs when it switches.
 
 const song = SONGS.mindFields
 const scenes = ['Gaming', 'Just Chatting', 'BRB']
@@ -18,7 +18,7 @@ const { playing } = useSvgPlayback(root)
       <svg
         viewBox="0 0 480 262"
         role="img"
-        aria-label="OBS switches from the Gaming scene to Just Chatting. The widget changes from the slim minimal theme over the game to the large swag theme beside the webcam, still playing the same song, and Queueify logs that the scene uses the swag theme and it switched."
+        aria-label="OBS switches from the Gaming scene to Just Chatting. The widget changes from the slim minimal theme over the game to the large swag theme beside the webcam, still playing the same song, and queueify logs that the scene uses the swag theme and it switched."
       >
         <defs>
           <linearGradient :id="`${uid}-game`" x1="0" y1="0" x2="1" y2="1">
@@ -90,7 +90,7 @@ const { playing } = useSvgPlayback(root)
           <rect x="362" y="119" width="34" height="4" rx="2" fill="#f5c542" />
         </g>
 
-        <!-- Queueify's log -->
+        <!-- queueify's log -->
         <rect x="12" y="176" width="456" height="74" rx="8" class="dg-term" />
         <text x="26" y="196" class="dg-tiny dg-mono">npm start</text>
         <text x="26" y="218" class="st-log dg-mono dg-dim">Scene "Gaming" uses the "minimal" theme - switched.</text>

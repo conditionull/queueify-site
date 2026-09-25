@@ -1,5 +1,5 @@
 <script setup lang="ts">
-// The landing page's hero picture: Queueify's own loop, shown as one. A
+// The landing page's hero picture: queueify's own loop, shown as one. A
 // request pops up in chat and its song drops onto the back of the queue; the
 // queue steps forward; the song at the front lifts into the overlay, which
 // changes over to it and fills its waveform as it plays. A record turns

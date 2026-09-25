@@ -3,7 +3,7 @@
 export interface Song {
   title: string
   artist: string
-  // The colour Queueify would sample from the cover for the widget
+  // The colour queueify would sample from the cover for the widget
   accent: string
   // The cover, drawn as sky, sun and hills: light, mid and dark
   cover: [string, string, string]

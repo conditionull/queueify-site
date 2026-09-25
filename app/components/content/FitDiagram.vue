@@ -1,6 +1,6 @@
 <script setup lang="ts">
 // Switching from a wide theme to a tall one, in the space the wide one had.
-// Left, what Queueify does: the tall theme keeps its shape and sits centred in
+// Left, what queueify does: the tall theme keeps its shape and sits centred in
 // the space. Right, what it avoids: the same theme stretched to fill it, its
 // square cover pulled into a letterbox.
 
@@ -13,7 +13,7 @@ const TALL = { w: 60, h: 96 }
 const panels = [
   {
     x: 8,
-    title: 'What Queueify does',
+    title: 'What queueify does',
     caption: 'Same shape, centred in the space',
     good: true,
     tall: `translate(${SPACE.x + (SPACE.w - TALL.w) / 2} ${SPACE.y})`,
@@ -38,7 +38,7 @@ const { playing } = useSvgPlayback(root)
       <svg
         viewBox="0 0 480 196"
         role="img"
-        aria-label="Two copies of the space a wide theme filled. Switching to a tall theme, Queueify keeps it the same shape and centres it in the space, on the left. On the right, for comparison, the same theme stretched to fill the space, with its square cover art pulled out of shape - which Queueify never does."
+        aria-label="Two copies of the space a wide theme filled. Switching to a tall theme, queueify keeps it the same shape and centres it in the space, on the left. On the right, for comparison, the same theme stretched to fill the space, with its square cover art pulled out of shape - which queueify never does."
       >
         <defs>
           <filter :id="`${uid}-shadow`" x="-30%" y="-30%" width="160%" height="180%">
