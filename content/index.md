@@ -99,8 +99,9 @@ description: What queueify handles once it is running.
     ::::
 
     ::::feature-card{icon="i-lucide-palette" label="Themes" art="themes" title="A visual theme editor" to="/themes/theme-editor"}
-    Drag the album art, title, artist, progress bar, and song times around a canvas. 50 fonts,
-    outlines, drop shadows, 2,000+ icons, and a waveform progress bar, saved as a real theme.
+    Start from one of 18 premade themes, or a blank canvas. Drag every part where you want it,
+    stack them in any order, and add cards, labels, icons, and an Up next row. Saved as a real
+    theme.
     ::::
 
     ::::feature-card{icon="i-lucide-monitor" label="OBS" art="obs" title="Sized and placed for you" to="/obs/browser-source"}

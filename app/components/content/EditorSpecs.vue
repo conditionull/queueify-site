@@ -1,8 +1,8 @@
 <script setup lang="ts">
 const stats = [
-  { value: '3', label: 'starting layouts', hint: 'Classic, Spiffy, and Stacked' },
-  { value: '50', label: 'fonts', hint: 'plus UPPERCASE and italic' },
-  { value: '2,000+', label: 'Lucide icons', hint: 'colour, weight, rotation, and opacity' },
+  { value: '18', label: 'premade themes', hint: 'banner, panel, and portrait shapes' },
+  { value: '64', label: 'fonts', hint: 'including pixel and dot matrix fonts' },
+  { value: '2,000+', label: 'Lucide icons', hint: 'color, weight, rotation, and opacity' },
   { value: '0', label: 'restarts', hint: 'saved themes load straight away' },
 ]
 
@@ -10,8 +10,18 @@ const pills = [
   'Gradients',
   'Outlines',
   'Drop shadows',
-  'Colours from the album art',
-  'Waveform progress bar',
+  'Colors from the album art',
+  'Cards and labels',
+  'Up next',
+  'Waveform and squiggle bars',
+  'Layers and locking',
+  'Parts that pop out of the panel',
+  'Blur, pixelate, and spin',
+  'Song change animations',
+  'Viewer rewards',
+  'Milestone takeovers',
+  'Ambience',
+  'Search every setting',
   'Canvas blur and dim',
   'Snapping and guides',
   'Undo and revert',
