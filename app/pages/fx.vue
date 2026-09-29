@@ -440,12 +440,8 @@ onMounted(() => {
 .fx-section { margin-top: 22px; }
 .fx-section h2 { margin: 0 0 10px; font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
 
-.fx-swatches { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 4px; margin-inline: -16px; padding-inline: 16px; scrollbar-width: none; }
-.fx-swatches::-webkit-scrollbar { display: none; }
-/* A row you swipe on a phone; with room to spare, they all just show. */
-@media (min-width: 700px) {
-  .fx-swatches { flex-wrap: wrap; overflow: visible; margin-inline: 0; padding-inline: 0; }
-}
+/* Wraps onto more lines rather than running off the side of a phone. */
+.fx-swatches { display: flex; flex-wrap: wrap; gap: 8px; }
 .fx-swatch {
   flex: none; display: inline-flex; align-items: center; gap: 7px; padding: 7px 13px 7px 8px;
   border: 1px solid var(--line); border-radius: 999px; background: var(--card);
