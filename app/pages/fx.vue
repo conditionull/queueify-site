@@ -316,7 +316,7 @@ onMounted(() => {
           :aria-pressed="selected === name"
           @click="choose(name)"
         >
-          {{ LABELS[name] }}
+          <span class="fx-name">{{ LABELS[name] }}</span>
           <span
             v-if="tierOf(name) > 1"
             class="fx-tier"
@@ -410,7 +410,11 @@ onMounted(() => {
 
 /* The sample widget: a real one's parts, so the effects that move them have
    something to move. */
-.fx-stage { position: relative; width: 100%; margin-top: 22px; aspect-ratio: 680 / 210; min-height: 124px; }
+.fx-stage {
+  position: sticky; top: max(10px, env(safe-area-inset-top)); z-index: 10;
+  width: 100%; margin-top: 22px; aspect-ratio: 680 / 210; min-height: 124px;
+  background: var(--bg); border-radius: clamp(14px, 4%, 22px);
+}
 .fx-widget {
   position: absolute; inset: 0; box-sizing: border-box;
   /* minmax(0, 1fr): a long title is cut short, never widens the page. */
@@ -450,13 +454,15 @@ onMounted(() => {
 .fx-swatch.is-on { border-color: var(--green); background: color-mix(in srgb, var(--green) 14%, var(--card)); }
 .fx-dot { width: 18px; height: 18px; border-radius: 50%; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .25); }
 
-.fx-chips { display: grid; grid-template-columns: repeat(auto-fill, minmax(118px, 1fr)); gap: 8px; }
+.fx-chips { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 8px; }
 @media (max-width: 359px) { .fx-chips { grid-template-columns: 1fr 1fr; } }
 .fx-chip {
+  display: flex; align-items: center; gap: 6px;
   min-height: 44px; padding: 10px 12px; border: 1px solid var(--line); border-radius: 12px;
   background: var(--card); color: var(--text); font: inherit; font-size: 14.5px; font-weight: 500; text-align: left;
   cursor: pointer; transition: border-color .15s, background .15s, transform .15s; -webkit-tap-highlight-color: transparent;
 }
+.fx-name { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .fx-chip:hover { border-color: rgba(255, 255, 255, .2); }
 /* Scrolled to, a chip stops clear of the copy bar rather than under it. */
 .fx-chip, .fx-swatch, .fx-foot, .fx-credit { scroll-margin-bottom: 120px; }
@@ -485,7 +491,7 @@ onMounted(() => {
 .fx-command { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 15px; color: #e5e7eb; }
 .fx-needs { font-size: 12px; color: #fbbf24; }
 .fx-tier {
-  display: inline-block; margin-left: 6px; padding: 1px 6px; border-radius: 999px; vertical-align: 1px;
+  flex: none; padding: 1px 6px; border-radius: 999px; white-space: nowrap;
   background: rgba(251, 191, 36, .14); color: #fbbf24; font-size: 11px; font-weight: 600;
 }
 .fx-copy {
